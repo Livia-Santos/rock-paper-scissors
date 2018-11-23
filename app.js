@@ -11,6 +11,8 @@ const resultEl = document.querySelector(".result__copy");
 const rockEl = document.getElementById("r");
 const paperEl = document.getElementById("p");
 const scissorsEl = document.getElementById("s");
+const resetButton = document.querySelector('.button-reset');
+
 
 function getComputerChoice() {
     const choices = ['r', 'p', 's'];
@@ -25,26 +27,32 @@ function convertToWord(letter) {
 }
 
 function win(user, computer) {
+    const userChoiceEl = document.getElementById(user)
     userScore++;
     userScoreEl.innerHTML = userScore;
     computerScoreEl.innerHTML = computerScore;
-    // scoreBoardUserEl.style.backgroundColor = "green";
     resultEl.innerHTML = `${convertToWord(user)} ${("(user)").fontsize(4)} beats ${convertToWord(computer)}${("(comp)").fontsize(4)} You win!\u{1F525}`
+    userChoiceEl.classList.add('green-glow');
+    setTimeout(() => userChoiceEl.classList.remove('green-glow') ,500);
 }
 
 function lose(user, computer) {
+    const userChoiceEl = document.getElementById(user)
     computerScore++;
     userScoreEl.innerHTML = userScore;
     computerScoreEl.innerHTML = computerScore;
-    // scoreBoardUserEl.style.backgroundColor = "green";
     resultEl.innerHTML = `${convertToWord(user)} ${("(user)").fontsize(4)} loses to ${convertToWord(computer)}${("(comp)").fontsize(4)} You lost!\u{1F4A9}`
+    userChoiceEl.classList.add('red-glow');
+    setTimeout(() => userChoiceEl.classList.remove('red-glow'), 500);
 }
 
 function draw(user, computer) {
+    const userChoiceEl = document.getElementById(user)
     userScoreEl.innerHTML = userScore;
     computerScoreEl.innerHTML = computerScore;
-    // scoreBoardUserEl.style.backgroundColor = "green";
     resultEl.innerHTML = `${convertToWord(user)} ${("(user)").fontsize(4)} equals ${convertToWord(computer)}${("(comp)").fontsize(4)} It's a draw!\u{1F610}`
+    userChoiceEl.classList.add('grey-glow');
+    setTimeout(() => userChoiceEl.classList.remove('grey-glow') ,500);
 }
 
 function game(userChoice) {
@@ -81,5 +89,12 @@ function main() {
         game("s");
     });
 }
+
+resetButton.Onclick= resetScore;
+
+function resetScore(){
+    location.reload();
+ }
+
 
 main();
