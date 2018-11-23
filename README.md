@@ -6,4 +6,4 @@ This web development tutorial shows how to use JavaScript, HTML, and CSS to crea
 
 https://www.youtube.com/watch?v=jaVNP3nIAv0
 
-live at:  Used Zeit now to delpoy this project.
+live at: https://liviasantosrps.herokuapp.com/
