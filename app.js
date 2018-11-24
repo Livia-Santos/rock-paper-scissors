@@ -5,7 +5,9 @@ let computerScore = 0;
 // DOM variables
 const userScoreEl = document.getElementById("user-score");
 const computerScoreEl = document.getElementById("computer-score");
-const scoreBoardEl = document.querySelector(".score-board");
+const scoreBoardEl = document.querySelectorAll(".score__board__badge");
+const userScoreBoardEl = document.getElementById("user-label");
+const compScoreBoardEl = document.getElementById("comp-label");
 const scoreBoardUserEl = document.querySelector(".score__board__badge-left")
 const resultEl = document.querySelector(".result__copy");
 const rockEl = document.getElementById("r");
@@ -32,8 +34,13 @@ function win(user, computer) {
     userScoreEl.innerHTML = userScore;
     computerScoreEl.innerHTML = computerScore;
     resultEl.innerHTML = `${convertToWord(user)} ${("(user)").fontsize(4)} beats ${convertToWord(computer)}${("(comp)").fontsize(4)} You win!\u{1F525}`
+    // Glow score and button effects
     userChoiceEl.classList.add('green-glow');
-    setTimeout(() => userChoiceEl.classList.remove('green-glow') ,500);
+    userScoreBoardEl.style.backgroundColor = 'var(--color-green)';
+    setTimeout(() => {
+        userChoiceEl.classList.remove('green-glow');
+        userScoreBoardEl.style.backgroundColor = 'var(--color-red)';
+        },500);
 }
 
 function lose(user, computer) {
@@ -42,8 +49,13 @@ function lose(user, computer) {
     userScoreEl.innerHTML = userScore;
     computerScoreEl.innerHTML = computerScore;
     resultEl.innerHTML = `${convertToWord(user)} ${("(user)").fontsize(4)} loses to ${convertToWord(computer)}${("(comp)").fontsize(4)} You lost!\u{1F4A9}`
+    // Glow score and button effects
     userChoiceEl.classList.add('red-glow');
-    setTimeout(() => userChoiceEl.classList.remove('red-glow'), 500);
+    compScoreBoardEl.style.backgroundColor = 'var(--color-green)';
+    setTimeout(() => {
+        userChoiceEl.classList.remove('red-glow');
+        compScoreBoardEl.style.backgroundColor = 'var(--color-red)';
+    }, 500);
 }
 
 function draw(user, computer) {
@@ -52,7 +64,16 @@ function draw(user, computer) {
     computerScoreEl.innerHTML = computerScore;
     resultEl.innerHTML = `${convertToWord(user)} ${("(user)").fontsize(4)} equals ${convertToWord(computer)}${("(comp)").fontsize(4)} It's a draw!\u{1F610}`
     userChoiceEl.classList.add('grey-glow');
-    setTimeout(() => userChoiceEl.classList.remove('grey-glow') ,500);
+    scoreBoardEl.forEach((item) => {
+        item.style.backgroundColor = 'var(--color-grey';
+    });
+
+    setTimeout(() => {
+        userChoiceEl.classList.remove('grey-glow')
+        scoreBoardEl.forEach((item) => {
+            item.style.backgroundColor = 'var(--color-red';
+        });
+    } ,500);
 }
 
 function game(userChoice) {
