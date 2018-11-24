@@ -168,11 +168,20 @@ header {
 /* media queries */
 
 @media screen and (max-width: 600px) {
+    .score__board {
+        width: 175px;
+        font-size: 36px;
+    }
+
     .result {
         font-size: 26px;
     }
     .result__copy {
         font-weight: normal;
+    }
+
+    .choices {
+        margin-top: 30px;
     }
 
     .choices__item {
@@ -186,4 +195,5 @@ header {
         max-width: 70px;
         max-height: 70px;
     }
+
   }
