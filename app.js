@@ -1,6 +1,9 @@
 // Cache the DOM
 let userScore = 0;
 let computerScore = 0;
+const winAudio = new Audio('sounds/correct.mp3');
+const losesAudio = new Audio('sounds/fail.mp3')
+
 
 // DOM variables
 const userScoreEl = document.getElementById("user-score");
@@ -38,6 +41,7 @@ function win(user, computer) {
     userChoiceEl.classList.add('green-glow');
     userScoreBoardEl.style.backgroundColor = 'var(--color-green)';
     setTimeout(() => {
+        winAudio.play();
         userChoiceEl.classList.remove('green-glow');
         userScoreBoardEl.style.backgroundColor = 'var(--color-red)';
         },500);
@@ -53,6 +57,7 @@ function lose(user, computer) {
     userChoiceEl.classList.add('red-glow');
     compScoreBoardEl.style.backgroundColor = 'var(--color-green)';
     setTimeout(() => {
+        losesAudio.play();
         userChoiceEl.classList.remove('red-glow');
         compScoreBoardEl.style.backgroundColor = 'var(--color-red)';
     }, 500);
